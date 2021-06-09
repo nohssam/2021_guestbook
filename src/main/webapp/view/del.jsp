@@ -14,30 +14,40 @@
 	.bg{background-color: #99ccff}
 	input{ padding : 5px;  }
 </style>
+<script type="text/javascript">
+	function del_ok(f) {
+		// 비밀번호체크
+		if(f.pwd.value == "${param.pwd}"){
+			var chk = confirm("정말 삭제할까요?");
+			if(chk){
+				f.submit();
+			}else{
+			   history.go(-1);					
+			}
+		}else{
+			alert("비밀번호틀림");
+			f.pwd.value="";
+			f.pwd.focus();
+			return;
+		}
+	}
+</script>
 </head>
 <body>
 	<div>
-		<h2>방명록 : 작성화면</h2>
+		<h2>방명록 : 삭제화면</h2>
 		<hr>
 		<p>[ <a href="list.jsp">목록으로</a> ]</p>
-		<form method="post" action="write_ok.jsp">
+		<form method="post" action="del_ok.jsp">
 			<table>
 				<tbody>
-					<tr><th class="bg">작성자</th> <td><input type="text" name="name" ></td></tr>
-					<tr><th class="bg">제목</th> <td><input type="text" name="subject" ></td></tr>
-					<tr><th class="bg">email</th> <td><input type="text" name="email" ></td></tr>
 					<tr><th class="bg">비밀번호</th> <td><input type="password" name="pwd" ></td></tr>
-					<tr>
-					   <td colspan="2">
-					   		<textarea rows="10" cols="50" name="content"></textarea>
-					   </td>
-					</tr>
 				</tbody>
 				<tfoot>
 					<tr>
 						<td colspan="2">
-							<input type="submit" value="저장">
-							<input type="reset"  value="취소"> 
+							<input type="button" value="삭제" onclick="del_ok(this.form)">
+							<input type="hidden" name="idx" value="${param.idx}">
 						</td>
 					</tr>
 				</tfoot>
@@ -46,14 +56,3 @@
 	</div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

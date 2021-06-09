@@ -42,7 +42,7 @@
 								<tr>
 									<td>${vs.count}</td>
 									<td>${k.name }</td>
-									<td>${k.subject }</td>
+									<td><a href="onelist.jsp?idx=${k.idx}">${k.subject }</a></td>
 									<td>${k.regdate.substring(0,10)}</td>
 								</tr>
 							</c:forEach>
